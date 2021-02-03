@@ -30,6 +30,7 @@ var connection = mysql.createConnection({
         choices: [
           "View all employees",
           "Add an employee",
+          "Remove an employee",
         ]
       })
       .then(function(answer) {
@@ -43,6 +44,11 @@ var connection = mysql.createConnection({
         case "Add an employee":
             addEmployee();
             break;
+        
+
+        case "Remove an employee":
+          removeEmployee();
+          break;
         }
       });
   }
@@ -56,6 +62,11 @@ var connection = mysql.createConnection({
         console.table(res);
         runSearch();
       });
+  }
+
+  // Remove an employee
+  function removeEmployee() {
+    runSearch();
   }
 
   function addEmployee() {
@@ -75,7 +86,6 @@ var connection = mysql.createConnection({
         type: "list",
         message: "What is the employee's role?",
         choices: ["Software Engineer", "Sales Manager", "Sales Lead", "Creative Director"]
-
       }
     ]).then(function(answer) {
       var roleId;
